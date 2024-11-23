@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简单计算器</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 50px;
+    }
+
+   .container {
+      max-width: 400px;
+      margin: auto;
+      text-align: center;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+   .result {
+      margin-top: 20px;
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>简单计算器</h2>
+    <input type="number" id="num1" placeholder="请输入第一个数...">
+    <select id="operation">
+      <option value="add">加</option>
+      <option value="subtract">减</option>
+      <option value="multiply">乘</option>
+      <option value="divide">除</option>
+    </select>
+    <input type="number" id="num2" placeholder="请输入第二个数...">
+    <button onclick="calculate()">计算</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      var num1 = parseFloat(document.getElementById("num1").value);
+      var num2 = parseFloat(document.getElementById("num2").value);
+      var operation = document.getElementById("operation").value;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        alert("请输入有效的数字!");
+        return;
+      }
+
+      var result;
+      switch (operation) {
+        case "add":
+          result = num1 + num2;
+          break;
+        case "subtract":
+          result = num1 - num2;
+          break;
+        case "multiply":
+          result = num1 * num2;
+          break;
+        case "divide":
+          if (num2 === 0) {
+            alert("除数不能为0！");
+            return;
+          }
+          result = num1 / num2;
+          break;
+      }
+
+      document.getElementById("result").innerHTML = "结果: " + result;
+    }
+  </script>
+</body>
+
+</html>
